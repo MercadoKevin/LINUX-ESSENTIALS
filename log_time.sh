@@ -1,1 +1,1 @@
-echo -e "Current Date and Time: $(date)/n" >>log.txt
+echo "Current Date and Time: $(date)" >>log.txt
