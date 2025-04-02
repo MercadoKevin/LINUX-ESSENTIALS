@@ -20,10 +20,10 @@ jobs:
       - name: Display contents of log.txt
         run: cat log.txt
 
-      - name: Commit and push changesa
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add log.txt
-          git commit -m "Update log file with new timestamp" || echo "No changes to commit"
+          git commit -m "Update log file with new timestamp" || (echo "No changes to commit" && exit 0)
           git push
