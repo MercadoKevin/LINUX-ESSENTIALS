@@ -2,9 +2,8 @@ name: Log Time Job
 
 on:
   schedule:
-    - cron: "*/5 * * * *"  # Runs every 5 minutes
-  workflow_dispatch:
-
+  - cron: "*/5 * * * *" # Runs every 5 minutes
+  
 jobs:
   log_time:
     runs-on: ubuntu-latest
@@ -12,26 +11,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          token: ${{ secrets.SCSWW }}
+        
       - name: Run logging script
         run: |
           chmod +x log_time.sh
           ./log_time.sh
 
-      - name: Display contents of log.txt
-        run: cat log.txt
-
-      - name: Check git status
-        run: git status
-
-      - name: Display .gitignore contents
-        run: cat .gitignore || echo ".gitignore file not found"
-
-      - name: Check git diff
-        run: git diff
-
-      - name: Commit and push changes
+      - name: Commit and push changesa
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
