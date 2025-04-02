@@ -16,6 +16,9 @@ jobs:
         run: |
           chmod +x log_time.sh
           ./log_time.sh
+      
+      - name: Display contents of log.txt
+        run: cat log.txt
 
       - name: Commit and push changesa
         run: |
