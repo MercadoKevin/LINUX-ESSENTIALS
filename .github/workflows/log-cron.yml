@@ -2,12 +2,12 @@ name: Log Time Job
 
 on:
   schedule:
-  - cron: "*/1 * * * *" # Runs every 5 minutes
-  
+    - cron: "*/1 * * * *"  # Runs every 5 minutes
+
 jobs:
   log_time:
     runs-on: ubuntu-latest
-  
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -17,10 +17,13 @@ jobs:
           chmod +x log_time.sh
           ./log_time.sh
 
-      - name: Commit and push changesa
+      - name: Display contents of log.txt
+        run: cat log.txt
+
+      - name: Commit and push changes
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
           git add log.txt
-          git commit -m "Update log file with new timestamp" || echo "No changes to commit"
+          git commit -m "Update log file with new timestamp" || (echo "No changes to commit" && exit 0)
           git push
